@@ -9,7 +9,9 @@
 
                 <hr>
                 <p>{{ selectedComponent}}</p>
-                <component :is="selectedComponent">Default content</component>
+                <keep-alive>
+                <component :is="selectedComponent"><p>Default content</p></component>
+                </keep-alive>
                <!-- <app-quote >     
                <h2 slot="title"> {{ quoteTitle }}</h2>
                <P slot="content">A wounderful quote</P>
