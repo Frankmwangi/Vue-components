@@ -12,7 +12,12 @@
                      <transition name="slide">
                          <div class="alert alert-info" v-if="show">This is some info</div>
                     </transition>
-                     <transition name="fade" appear>
+                     <transition 
+                     
+                     enter-active-class="animated bounce"
+                     
+                     leave-active-class="animated shake"
+                     appear>
                          <div class="alert alert-info" v-if="show">This is some iugiuhiuhuihuiinfo</div>
                     </transition>
                    
