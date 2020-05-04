@@ -2,45 +2,42 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <h1>Filters & Mixins</h1>
-                    <p>{{ text | toUppercase | to-lowercase }}</p>
+                <h1>Animations</h1>
                     <hr>
-                    <button @click="fruits.push('Berries')">Add New Topdo</button>
-                    <input v-model="filterText">
-                    <ul>
-                        <li v-for="fruit in filteredFruits">{{ fruit }}</li>
-                    </ul>
-                    <hr>
-                    <app-list></app-list>
+                    <button class="btn btn-primary" @click="show = !show">Show Alert</button>
+                    <br></br>
+                    <transition name ="fade">
+                         <div class="alert alert-info" v-if="show">This is some info</div>
+                    </transition>
+                   
             </div>
         </div>
     </div>
 </template>
 
 <script>
-
-import List from './List.vue';
-import {fruitMixin} from './fruitmixin'
     export default {
-        mixins: [fruitMixin],
-        data(){
-            return{
-                text:'Hello there',
-                
-
+        data() {
+            return {
+                show: false
             }
-        },
-        filters:{
-            'toUppercase'(value){
-                return value.toUpperCase();
-            }
-        },
-       components:{
-            appList: List
         }
     }
 </script>
 
 <style>
+    .fade-enter{
+        opacity:0;
+    }
+    .fade-enter-active{
+        transition: opacity 1s;
+    }
+    .fade-leave {
+        /* opacity : 1s*/
+    }
+    .fade-leave-active{
+        transition: opacity 1s;
+        opacity: 0;
+    }
 
 </style>
