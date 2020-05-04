@@ -57,15 +57,27 @@
             return {
                 show: true,
                 load: true,
-                alertAnimation:'fade'
+                alertAnimation:'fade',
+                elementWidth: 100
             }
         },
         methods:{
             beforeEnter(el){
                 console.log('beforeEnter');
+                this.elementWidth = 100;
+                el.style.width = this.elementWidth + 'px';
             },
             enter(el,done){
                 console.log('enter');
+                let round =1;
+                const interval = setInterval(()=>{
+                    el.style.width = (this.elementWidth + round * 10) + 'px';
+                    round++;
+                    if(round > 20){
+                        clearInterval(interval);
+                        done();
+                    }
+                },20);
                 done();
             },
             afterEnter(el){
@@ -76,10 +88,21 @@
             },
             beforeLeave(el){
                 console.log('beforeLeave');
+                this.elementWidth = 300;
+                el.style.width = this.elementWidth + 'px';
             },
             leave(el,done){
+                  let round =1;
+                const interval = setInterval(()=>{
+                    el.style.width = (this.elementWidth - round * 10) + 'px';
+                    round++;
+                    if(round > 20){
+                        clearInterval(interval);
+                        done();
+                    }
+                },20);
                 console.log('leave');
-                done();
+                
             },
             afterLeave(el){
                 console.log('afterLeave');
