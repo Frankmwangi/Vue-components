@@ -3,10 +3,15 @@
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <h1>Animations</h1>
+                <hr>
+                <select v-model="alertAnimation" class="form-control">
+                    <option value="fade">Fade</option>
+                       <option value="slide">Slide</option>
+                </select>
                     <hr>
                     <button class="btn btn-primary" @click="show = !show">Show Alert</button>
                     <br>
-                    <transition name="fade">
+                    <transition name="alertAnimation">
                          <div class="alert alert-info" v-if="show">This is some iugiuhiuhuihuiinfo</div>
                     </transition>
                      <transition name="slide">
@@ -20,6 +25,10 @@
                      appear>
                          <div class="alert alert-info" v-if="show">This is some iugiuhiuhuihuiinfo</div>
                     </transition>
+                     <transition name="alertAnimation" mode="out-in">
+                         <div class="alert alert-info" v-if="show" key="info">This is some iugiuhiuhuihuiinfo</div>
+                          <div class="alert alert-warning" v-else key="warning">This is some iugiuhiuhuihuiinfo</div>
+                    </transition>
                    
             </div>
         </div>
@@ -30,7 +39,8 @@
     export default {
         data() {
             return {
-                show: true
+                show: true,
+                alertAnimation:'fade'
             }
         }
     }
