@@ -45,20 +45,38 @@
                     >
                         <div style="width:100px; height:100px; background-color: lightgreen" v-if="load"></div>
                     </transition>
-                   
+                    <hr>
+                    <br>
+                    <button class="btn btn-primary"
+                    @click="selectedComponent == 'app-success-alert' ? selectedComponent = 'app-danger-alert':selectedComponent ='app-success-alert'">Toogle Components</button>
+                   <br><br>
+                   <transition name="fade">
+                        <component :is="selectedComponent"@click="addItem">Add item</component>
+                   </transition>
+                   <hr>
+                   <button class="btn btn-primary"@click="addItem">Add item</button>
+                   <br><br>
+                   <ul class="list-group">
+                       <li class="list-group-item" v-for="(number,index) in numbers"@click="removeItem(index)"
+                       style="cursor: pointer">{{ number }}</li>
+                   </ul>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import DangerAlert from './DangerAlert.vue'
+     import SuccessAlert from './SuccessAlert.vue'
     export default {
         data() {
             return {
                 show: true,
                 load: true,
                 alertAnimation:'fade',
-                elementWidth: 100
+                elementWidth: 100,
+                selectedComponent: 'app-success-alert',
+                numbers: [1,2,3,4,5]
             }
         },
         methods:{
@@ -109,7 +127,18 @@
             },
             leaveCancelled(el){
                 console.log('leaveCancelled');
+            },
+            addItem(){
+                const pos = Math.floor(Math.random() * this.numbers.length);
+                this.numbers.splice(pos, 0,this.numbers.length + 1);
+            },
+            removeItem(index){
+                this.numbers.splice(index,1)
             }
+        },
+        components: {
+            appDangerAlert:DangerAlert,
+            appSuccessAlert: SuccessAlert
         }
     }
 </script>
