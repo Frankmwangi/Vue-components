@@ -44,7 +44,7 @@
              }) ;
             },
             fetchData(){
-                this.$http.get('https://vue-http-57af5.firebaseio.com/data.json',this.user)
+                this.$http.get('',this.user)
                 .then(response=> {
                     return response.json();
                  
