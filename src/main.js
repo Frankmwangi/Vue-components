@@ -7,7 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 Vue.use(VueRouter);
 const router = new VueRouter({
-  routes: routes
+  routes,
+  mode:'history'
 })
 new Vue({
   el: '#app',
