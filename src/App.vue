@@ -5,7 +5,7 @@
                 <h1>Routing</h1>
                 <hr>
                 <router-view name="header-top"></router-view>
-                <transitions name="slide"> <router-view></router-view></transitions>
+                <transition name="slide"> <router-view></router-view></transition>
                 
                 <router-view name="header-bottom"></router-view>
             </div>
